@@ -1,0 +1,1012 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{latexsym, marvosym}
+\usepackage{pifont}
+\usepackage{lscape}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[bottom]{footmisc}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{pencil}[theorem]{\noindent \ding{46}}
+\newtheorem{biohazard}[theorem]{\noindent \Biohazard}
+\usepackage{pdfpages}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{xfrac}
+\usepackage{hyperref}
+\usepackage{relsize}
+\usepackage{rotating}
+\usepackage{verbatim}
+\newcommand{\lambdabold}{\mbox{\boldmath$\lambda$}}
+\newcommand{\mubold}{\mbox{\boldmath$\mu$}}           
+\newcommand{\thetabold}{\mbox{\boldmath$\theta$}}   
+\newcommand{\alphabold}{\mbox{\boldmath$\alpha$}}                 
+\newcommand{\betabold}{\mbox{\boldmath$\beta$}}
+\newcommand{\gammabold}{\mbox{\boldmath$\gamma$}}
+ \newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+    \def\independenT#1#2{\mathrel{\setbox0\hbox{$#1#2$}%
+    \copy0\kern-\wd0\mkern4mu\box0}} 
+            
+\newcommand{\noin}{\noindent}    
+\newcommand{\logit}{\textrm{logit}} 
+\newcommand{\var}{\textrm{Var}}
+\newcommand{\cov}{\textrm{Cov}} 
+\newcommand{\corr}{\textrm{Corr}} 
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\Bern}{\textrm{Bern}}
+\newcommand{\Bin}{\textrm{Bin}}
+\newcommand{\Beta}{\textrm{Beta}}
+\newcommand{\Gam}{\textrm{Gamma}}
+\newcommand{\Expo}{\textrm{Expo}}
+\newcommand{\Pois}{\textrm{Pois}}
+\newcommand{\Unif}{\textrm{Unif}}
+\newcommand{\Geom}{\textrm{Geom}}
+\newcommand{\NBin}{\textrm{NBin}}
+\newcommand{\Hypergeometric}{\textrm{HGeom}}
+\newcommand{\Mult}{\textrm{Mult}}
+
+
+
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.2in,left=.2in,right=.2in,bottom=.2in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+\pagestyle{empty}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{\textbf{Stat 110 Cheatsheet}} \\
+\end{center}
+Go through first and put a box with a blank for the answer. Then set up the problem. Rewrite variables \emph{and} what they mean, especially for questions further from the top. Don't just use formulas, also name them!
+\section{Math}
+\begin{description}
+\item \[\frac{d}{dx}e^{-x^2a} = 2xae^{-ax^2}\]
+\item[Logs] Always take the log on the r.v., not in the probability statement! 
+\[log(a*b)=log(a)+log(b)\]
+\[log_2(q^k) = k*log_2(q)\]
+\item[Taylor Series] \[e^x = \sum_{n=0}^\infty \frac{x^n}{n!}\]
+\item[Geometric Series]
+\[\sum_{n=0}^{n-1} ar^k\ = a\left( \frac{1-r^n}{1-r} \right) \]
+\end{description}
+
+\section{Probability and Counting}
+
+\begin{description}
+        \item[Union] - ${\bf A} \cup {\bf B}$ means ${\bf A}\ or\ {\bf B}$ and you \textbf{ADD} up the probabilities 
+        \item[Intersection] - ${\bf A} \cap {\bf B}$ means ${\bf A}\ and \ {\bf B}$ and you \textbf{MULTIPLY} the probabilities 
+        \item[Principle of Inclusion-Exclusion]
+        \[ P ({\bf A} \cup {\bf B}) = P({\bf A}) + P({\bf B}) - P({\bf A} \cap {\bf B}) \]
+	   \item[De Morgan's Laws] - De Morgan's Law says that the complement is distributive as long as you flip the sign in the middle.
+           \begin{align*} 
+        ({\bf A} \cup {\bf B})^c \equiv {\bf A^c} \cap {\bf B^c} \\
+        ({\bf A} \cap {\bf B})^c \equiv {\bf A^c} \cup {\bf B^c}
+           \end{align*} 
+    \item[Binomial Coefficient] $\binom{n}{k} = \frac{n!}{(n-k)!k!}$
+    \item[Sampling Table] - The sampling tables describes the different ways to take a sample of size $k$ out of a population of size $n$. The column names denote whether order matters or not.\\
+        %\begin{table}[H]
+        \begin{center}
+                %\setlength{\extrarowheight}{1pt}
+            \begin{tabular}{r|cc}
+                 & \textbf{Matters}ÊÊ & \textbf{Not Matter} \\ \hline
+                \textbf{With Replacement}ÊÊÊ & $\displaystyle n^k$ÊÊÊÊÊÊÊÊÊÊÊÊÊÊ & $\displaystyle{n+k-1 \choose k}$ÊÊÊÊÊ \\ 
+                \textbf{Without Replacement} & $\displaystyle\frac{n!}{(n - k)!}$ & $\displaystyle{n \choose k}$
+            \end{tabular}
+        \end{center}
+        %\end{table}
+\end{description}
+\subsection{Conditional Probability}
+Conditional probability is still probability, and also works as PDF!
+    \begin{description}
+       
+        \item[Independent Events] - ${\bf A}$ and ${\bf B}$ are independent if knowing one gives you no information about the other.
+           \begin{align*} 
+            P({\bf A}\cap {\bf B}) &= P({\bf A})P({\bf B}) \\
+            P({\bf A}|{\bf B}) &= P({\bf A})
+           \end{align*}
+        \item Also useful if $X$ and $Y$ are independent:
+        \[P(X=Y)=P(X=k)P(Y=k)\]
+        \item[Conditional Independence] - ${\bf A}$ and ${\bf B}$ are conditionally independent given ${\bf C}$ if: $P({\bf A}\cap {\bf B}|{\bf C}) = P({\bf A}|{\bf C})P({\bf B}|{\bf C})$. Conditional independence does not imply independence, and independence does not imply conditional independence.
+    \end{description}
+
+\subsubsection{Strategy: condition on the first step}
+Calvin and Hobbes play a match consisting of a series of games, where Calvin has probability $p$ of winning each game independently. The first player to win two games more than his opponent wins the match. 
+
+\begin{description}
+\item[To find the probability that Calvin wins a match], use LOTP, conditioning on the results of the first match. If the sequence is [CH] or [HC], when we're back at where we started. Then you solve for the probability you want. 
+\item[To find the expected number of games played], consider each pair of games as a trial. Success: [HH] or [CC]. Failure: [HC] or [CH]. $X$ = number of trials. $G = 2X$ = number of games. $X \sim FS(p)$ where $p=p^2+q^2$.
+\end{description}
+\section{Bayes Rule}
+
+\begin{description}
+\item[Bayes' Rule] and with Extra Conditioning (just add C!)
+    \begin{align*}
+         P({\bf A}|{\bf B}) &= \frac{P({\bf A} \cap {\bf B})}{P({\bf B})} = \frac{P({\bf B}|{\bf A})P({\bf A})}{P({\bf B})} \\
+         P({\bf A}|{\bf B}, {\bf C}) &= \frac{P({\bf A} \cap {\bf B} | {\bf C})}{P({\bf B} | {\bf C})} = \frac{P({\bf B}|{\bf A}, {\bf C})P({\bf A} | {\bf C})}{P({\bf B} | {\bf C})} 
+    \end{align*}
+\item[Odds form of Bayes' Rule]
+\[\frac{P(A|B)}{P(A^c|B)}=\frac{P(B|A)P(A)}{P(B|A^c)P(A^c)}\]
+    \item[When solving...] do Bayes Rule first, and then do LOTP
+\end{description}
+
+\section{Indicator Random Variables}
+
+\begin{description}
+\item Let $I_j$ be the event that the $j$th letter in the sequence is an A.
+\item[Distribution] $X_j \sim \Bern(p)$ where $p = P(X_j = 1)$
+\item[Fundamental Bridge] The expectation of an indicator for $A$ is the probability of the event. $E(I_A) = P(A)=p$. 
+\item[Variance] $Var(I_A)=p(1-p)$
+\end{description}
+
+\section{Expectation}
+
+\begin{description}
+\item[Expected Value] - Values times probability for all possible values the r.v. can take on. If there are 3 buses carrying $n$ students, then you should calculate expectation one by one (e.g. $\frac{1}{3}n_1+\frac{1}{3}n_2+\frac{1}{3}n_3)$. Formally, for $X: \{x_1, x_2, x_3, \dots\}$:
+\begin{center}
+$E(X) = \sum\limits_{i}x_iP(X=x_i)$
+\end{center}
+\item[Linearity] For \textbf{any} random variables $X$ and $Y$ and any constants $a, b, c$, the following is true:
+
+\[E(aX + bY + c) = aE(X) + bE(Y) + c \]
+
+\item[Symmetry] If two Random Variables have the same distribution, their expected values are equal, \emph{even when they are dependent}
+\item[Conditional Expected Value] is calculated like expectation, only conditioned on any event A. 
+\begin{center}
+$\ E(X | A) = \sum\limits_{x}xP(X=x | A)$
+
+\end{center}
+\item[Independence] If $X$ and $Y$ are independent, then
+\[E(XY) = E(X)E(Y)\]
+\end{description}
+\subsection{Using probability and expectation to prove existence}
+\begin{description}
+\item[Possibility principle] Let $A$ before the event that a randomly chosen object in a collection has a certain property. If $P(A)>0$, there there exists an object with the property
+\item[Good score principle] Let $X$ be the score of a randomly chosen object. If $E(X) \geq c$, then there is an object with a score of at least $c$ 
+\end{description}
+
+\section{Continuous Random Variables}
+\begin{description}
+
+\item[What's the prob that a CRV is in an interval?] 
+\[P(a \leq X \leq b) = P(X \leq b) - P(X \leq a) = F(b) - F(a)\]
+Note that by the fundamental theorem of calculus,
+\[ F(b) - F(a) = \int^b_a f(x)dx \]
+Note that for an r.v. with a normal distribution,
+\begin{align*}
+P(4<X<16)&=P(X<16)-P(X<4)\\
+&=\Phi \left(\frac{16-\mu }{\sigma ^2} \right) - \Phi \left( \frac{4-\mu }{\sigma ^2} \right)
+\end{align*}
+\item[Properties of valid CDF] 1) $F$ is increasing 2) $F$ is right-continuous 3) $F(x) \rightarrow 1$ as $x \rightarrow \infty$, $F(x) \rightarrow 0$ as $x \rightarrow -\infty$
+\item[The PDF, $f(x)$, is the derivative of the CDF.] It must integrate to 1 (because the probability that a CRV falls in the interval $[-\infty, \infty]$ is 1, and the PDF must always be nonnegative.
+\[ F'(x) = f(x) \]
+\[ F(x) = \int_{-\infty}^x f(t)dt \]
+\end{description}
+
+
+\subsection{Law of the Unconscious Statistician (LotUS)}
+\begin{description}
+\item[LotUS] states that you can find the expected value of a \emph{function of a random variable} g(X) this way:
+\[E(g(X)) = \Sigma_x g(x)P(X=x) \]
+\[E(g(X)) = \int^\infty_{-\infty}g(x)f(x)dx \]
+\item[What's a function of a random variable?] If $X$ is the number of bikes you see in an hour, then $g(X) =  2X$ could be the number of bike wheels you see in an hour. Both are random variables.
+\end{description}
+
+\section{Universality of Uniform} For any $X$ with CDF $F(x$), $F(X) \sim U$. 
+\begin{description}
+\item[Example] Since you can have $\Phi (X) \sim unif(0,1)$, then $E(\Phi (X)) = \frac{1}{2}$ using mean formula for uniform distribution. 
+\item[Example] Let $Z \sim N(0,1)$. Create an Expo(1) r.v. X as a function (in terms of) $Z$. First, set CDF of $Z$ equal to $U$. Then set Expo CDF equal to U and solve for X. Plug in $U$.
+\begin{align*}
+1-e^{-\lambda X}& = U & \Phi (Z)&=U\\
+1-U&=e^{-X} & X&=-ln(1-\Phi (Z))\\
+ln(1-U)&=-X\\
+X&=-ln(1-U)
+\end{align*}
+\end{description}
+
+
+
+
+\section{Section 7 - Expo and MGFs}
+
+\subsection{Can I Have a Moment?}
+\begin{description}
+\item[Moment] - Moments describe the shape of a distribution. The first three moments, are related to Mean, Variance, and Skewness. The $k^{th}$ moment of a random variable $X$ is $E(X^k)$.
+%\item[Moment about the mean] - The $k^{th}$ moment about the mean of a random variable $X$ is 
+%   \[ \mu_k = E[(X-\mu)^k] \]
+\item[Skewness is third standardized moment] \[E\left[\left(\frac{X-\mu }{\sigma}\right)^3\right]
+=\frac{E(X^3)-3\mu E(X^2) + 2\mu ^3}{\sigma^3}\]
+\end{description}
+
+\subsection{Moment Generating Functions}
+
+\begin{description}
+    \item[MGF] of $X$ is the expected value and function of a dummy variable $t$ for any r.v. $X$ given by:
+        \[ M_X(t) = E(e^{tX}) \]
+	\item[Discrete Example] Let $X \sim Pois(\lambda)$:
+    \[M_X(t) = E(e^{tx}) = \sum_{x=0}^\infty \frac{e^{xt}e^{-\lambda}}{x!}=e^{\lambda(e^t-1)} \]    
+    \item[Continuous Example] Suppose $X \sim Expo(\lambda)$. To find the moments, integrate for the MGF. Then plug in $t=0$. Then differentiate for the next moment. Repeat for all the moments.
+    \begin{align*}
+       M_X(t)=E(e^{tx})=\int_{0}^{\infty} e^{tx}\lambda e^{-\lambda x} dx = \frac{\lambda}{\lambda - t} \text{ for } t<\lambda.
+    \end{align*}
+    \item[Why is it called the Moment Generating Function?] Because the $k^{th}$ derivative of the moment generating function evaluated 0 is the $k^{th}$ moment of $X$!
+    \[E(X^k) = M_X^{(k)}(t=0)\]
+
+    \item[MGF of linear combination of X.] If we have $Y = aX + c$, then
+        \[M_Y(t) = E(e^{t(aX + c)}) =  e^{ct}E(e^{(at)X}) = e^{ct}M_X(at)\]
+        
+        
+    \item[Summing Independent R.V.s by Multiplying MGFs.] If $X$ and $Y$ are independent, then
+    \begin{align*}
+        M_{(X+Y)}(t) &= E(e^{t(X + Y)}) = E(e^{tX})E(e^{tY}) = M_X(t) \cdot M_Y(t) \\
+        M_{(X+Y)}(t) &= M_X(t) \cdot M_Y(t)
+    \end{align*}
+    The MGF of the sum of two random variables is the product of the MGFs of those two random variables.
+\end{description}
+
+\section{Min and Max}
+One way is to differentiate and set equal to 0 to find the inflection points and also test the endpoints. Another way is with probabilities. 
+\[P(min(X,Y)\geq a)=P(X\geq a, Y \geq a)\]
+Let i.i.d $X_1,..., X_n \sim Unif(0,1) \text{ and } X_{(n)}=max(X_1,\dots, X_n)\leq x)$. $X_{(n)}$ is less than $x$ iff all of the $X_j$ are less than $x$. 
+\[P(max(x_1,x_2,...x_n) \geq w)=1-[P(x_1\leq w)]^n=1-w^n\]
+\section{Joint PDFs and CDFs}
+
+\subsection{Joint Distributions}
+Both the Joint PMF and Joint PDF must be non-negative and sum/integrate to 1. Defined as:
+\[P(A \cap B)=P(B)P(A|B)=P(A)(B|A)\]
+If independent, then join PMFs are just the marginal PMFs multiplied together! 
+\subsection{Conditional Distributions}
+Hybrid Bayes' Rule is useful for finding posterior distributions of continuous r.v. conditioned on a discrete r.v. result. To solve a probability question that is binomial, but $p$ has a continuous distribution, apply hybrid bayes rule, then use fundamental bridge and find the probability using expectation (Adam's law). Recall 2010 final asking $P(X_4=1)$ where  $p\|(X=3) \sim \text{beta}(a,b)$.
+\[f(x|A) = \frac{P(A | X = x)f(x)}{P(A)}\]
+
+\subsection{Marginal Distributions}
+Review: Law of Total Probability Says for an event $A$ and partition $B_1, B_2, ... B_n$: $P(A) = \sum_i P(A\cap B_i)$ \\
+To find the distribution of one (or more) random variables from a joint distribution, sum or integrate over the irrelevant random variables. \\
+
+Getting the Marginal PMF from the Joint PMF
+\[P(X = x) = \sum_y P(X=x, Y=y)\]
+Getting the Marginal PDF from the Joint PDF
+\[f_X(x) = \int_y f_{X, Y}(x, y) dy\]
+
+
+
+\subsection{Independence of Random Variables}
+Random variables $X$ and $Y$ are independent for all $x, y$, if and only if one of the following hold:
+\begin{itemize}
+    \itemsep -1mm
+    \item Joint PMF/PDF/CDFs are the product of the Marginals
+    \item Conditional distribution of $X$ given $Y$ is the same as the marginal distribution of $X$
+\end{itemize}
+
+\subsection{Multivariate LotUS}
+Review: $E(g(X)) = \sum_xg(x)P(X=x)$, or $E(g(X)) = \int_{-\infty}^{\infty}g(x)f_X(x)dx$\\ 
+For discrete random variables:
+\[E(g(X, Y)) = \sum_x\sum_yg(x, y)P(X=x, Y=y)\]
+For continuous random variables:
+\[E(g(X, Y)) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}g(x, y)f_{X,Y}(x, y)dxdy\]
+
+\section{Section 9 - Covariance}
+\section{Variance}
+
+To solve, take out the constant first!
+\[\var(cX) = c^2\var(X)\]
+\[\var(X) = E(X^2) - [E(X)]^2\]
+\[E(X^2=\var(x)+[E(X)]^2\]
+
+subsection{Covariance and Correlation (cont'd)}
+\begin{description}
+\item [Covariance] is the two-random-variable equivalent of Variance, defined by the following:
+    \[\cov(X, Y) = E[(X - E(X))(Y - E(Y))] = E(XY) - E(X)E(Y)\]
+    Note that 
+    \[\cov(X, X) = E(XX) - E(X)E(X) =  \var(X)\]
+\item [Correlation] is a rescaled variant of Covariance that is always between -1 and 1.
+    \[\corr(X, Y) = \frac{\cov(X, Y)}{\sqrt{\var(X)\var(Y)}} = \frac{\cov(X, Y)}{\sigma_X\sigma_Y}\]
+\item [Covariance and Indepedence] - If two random variables are independent, then they are uncorrelated. The inverse is not necessarily true, except in the case of Multivariate Normal, where uncorrelated \emph{does} imply independence.
+    \[X \independent Y \longrightarrow \cov(X, Y) = 0\]
+
+\item [Covariance and Variance] - Note that
+    \begin{align*}
+        \cov(X, X) &= \var(X) \\
+        \var(X + Y) &= \var(X) + \var(Y) + 2\cov(X, Y) \\
+        \var(X_1 + X_2 + \dots + X_n ) &= \sum_{i = 1}^{n}\var(X_i) + 2\sum_{i < j} \cov(X_i, X_j)
+    \end{align*}
+    In particular, if X and Y are independent then they have covariance 0 thus
+    \[X \independent Y \Longrightarrow \var(X + Y) = \var(X) + \var(Y)\]
+    In particular, If $X_1, X_2, \dots, X_n$ are i.i.d. and all of them have the same covariance relationship, then 
+    \[\var(X_1 + X_2 + \dots + X_n ) = n\var(X_1) + 2{n \choose 2}\cov(X_1, X_2)\]
+    
+\item [Covariance and Linearity] - For random variables $W, X, Y, Z$ and constants $b, c$:
+\end{description}
+    \begin{align*}
+        \cov(X + b, Y + c) &= \cov(X, Y) \\
+        \cov(2X, 3Y) &= 6\cov(X, Y) \\
+        \cov(W + X, Y + Z) &= \cov(W, Y) + \cov(W, Z) + \cov(X, Y) + \cov(X, Z)
+    \end{align*}
+\begin{description}
+\item [Covariance and Invariance] - Correlation, Covariance, and Variance are addition-invariant, which means that adding a constant to the term(s) does not change the value. Let $b$ and $c$ be constants.
+    \begin{align*}
+        \var(X + c) &= \var(X) \\
+        \cov(X + b, Y + c) &= \cov(X, Y) \\
+        \corr(X + b, Y + c) &= \corr(X, Y) 
+    \end{align*}
+    In addition to addition-invariance, Correlation is \emph{scale-invariant}, which means that multiplying the terms by any constant does not affect the value. Covariance and Variance are not scale-invariant.
+    \[\corr(2X, 3Y) = \frac{\cov(X, Y)}{\sqrt{\var(X)\var(Y)}} = \corr(X, Y)\]
+
+\end{description}
+
+
+\section{Tranformations (i.e. find the PDF)}
+If the question gives you two r.v., where you know the pdf of one r.v. and the other r.v. is a function, then the problem wants you do use transformation of variables. Solve for whatever variable you have on top. If it's dy/dx, solve for Y because it's on top. Create two r.v. for what is known and what is unknown. \textbf{The known r.v. should be a function of the unknown r.v.}. You can also find the pdf by differentiating the CDF.
+\begin{description}
+
+% \item[Why do we need the Jacobian?] We need the Jacobian to rescale our PDF so that it integrates to 1. It's a normalizing constant.
+% Let's say that we have an r.v. $X$ with PDF $f_X(x)$, but we are also interested in some function of $X$. We call this function $Y = g(X)$.
+    \item[One Variable Transformations] If the function $g(X)$ is differentiable and every value of $X$ gets mapped to a unique value of $Y$, then the following is true:
+    \[f_Y(y) = f_X(x)\left|\frac{dx}{dy}\right| \] 
+    \item[Example] $U \sim unif(0,1)$ and $Y=U^{1/a}$. Determine the PDF of Y by finding the jacobean, then plugging in the known PDF: 
+    \begin{align*}
+    (Y)^a=(U^{1/a})^a\\
+    Y^a=U\\
+    \frac{dU}{dy}=|ay^{a-1}|\\
+    \end{align*}
+    \begin{comment}
+    To find $f_Y(y)$ as a function of $y$, plug in $x = g^{-1}(y)$.
+    \[f_Y(y) = f_X(g^{-1}(y))\left|\frac{d}{dy}g^{-1}(y)\right|\]
+    \end{comment}
+% Commenting out because Joe says you won't need to calculate Jacobians on the final
+   \item[Two Variable Transformations] Sometimes it's easier to do 1/J and then take the inverse. 
+   \begin{comment}Similarily, let's say we know the joint distribution of $U$ and $V$ but are also interested in the random vector $(X, Y)$ found by $(X, Y) = g(U, V)$. If $g$ is differentiable and one-to-one, then the following is true:
+   \end{comment}
+     \[f_{X,Y}(x, y) = f_{U,V}(u,v) \left|\left| \frac{\delta(u, v)}{\delta(x, y)} \right|\right| = f_{U,V}(u,v)\left| \left| 
+     \begin{array}{ccc}
+         \frac{\delta u}{\delta x} & \frac{\delta u}{\delta y} \\
+         \frac{\delta v}{\delta x} & \frac{\delta v}{\delta y} 
+     \end{array}
+     \right| \right|\] 
+     Remember to take the absolute value of the determinant matrix of partial derivatives. In a 2x2 matrix, 
+     \[ \left| \left|
+     \begin{array}{ccc}
+         a & b \\
+         c & d
+     \end{array}
+     \right| \right| = |ad - bc|\]
+     \begin{comment}
+     The determinant of the matrix of partial derivatives is referred to the \textbf{Jacobian}, denoted as $J$.
+     \[\left| \begin{array}{ccc}
+         \frac{\delta u}{\delta x} & \frac{\delta u}{\delta y} \\
+         \frac{\delta v}{\delta x} & \frac{\delta v}{\delta y} 
+     \end{array}\right| = J\]
+	\end{comment}
+\end{description}
+
+
+\subsection{Convolutions}
+\[f_{X+Y}(t)=\int_{-\infty}^\infty f_x(x)f_y(t-x)dx\]
+Example: Let $X,Y \sim i.i.d N(0,1)$. Treat $t$ as a constant. Integrate as usual.
+\[f_{X+Y}(t)=\int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}}e^{-x^2/2} \frac{1}{\sqrt{2\pi}}e^{-(t-x)^2/2} dx\]
+
+\begin{comment}
+\subsection{Order Statistics}
+\begin{description}
+    \item[Definition] - Let's say you have $n$ i.i.d. random variables $X_1, X_2, X_3, \dots X_n$. If you arrange them from smallest to largest, the $i$th element in that list is the $i$th order statistic, denoted $X_{(i)}$. $X_{(1)}$ is the smallest out of the set of random variables, and $X_{(n)}$ is the largest.
+    \item[Properties] - The order statistics are dependent random variables. The smallest value in a set of random variables will always vary and itself has a distribution. For any value of $X_{(i)}$, $X_{(i+1)} \geq X_{(j)}$.
+    \item[Distribution] - Taking $n$ i.i.d. random variables $X_1, X_2, X_3, \dots X_n$ with CDF $F(x)$ and PDF $f(x)$, the CDF and PDF of $X_{(i)}$ are as follows:
+    \[F_{X_{(i)}}(x) = P (X_{(j)} \leq x) = \sum_{k=i}^n {n \choose k} F(x)^k(1 - F(x))^{n - k}\]
+    \[f_{X_{(i)}}(x) = n{n - 1 \choose i - 1}F(x)^{i-1}(1 - F(X))^{n-i}f(x)\]
+    \item[Universality of the Uniform] - We can also express the distribution of the order statistics of $n$  i.i.d. random variables $X_1, X_2, X_3, \dots X_n$ in terms of the order statistics of $n$ uniforms. We have that
+    \[F(X_{(j)}) \sim U_{(j)}\]
+\end{description}
+\end{comment}
+
+\section{Conditional Expectation}
+
+        \scalebox{0.85}{
+            \begin{tabular}{ccc}
+            \toprule
+                  \textbf{Discrete Y} & \textbf{Continuous Y} \\
+            \midrule
+            $E(Y) = \sum_y yP(Y=y)$ & $E(Y) =\int_{-\infty}^\infty yf_Y(y)dy$ \\
+            $E(Y|X=x) = \sum_y yP(Y=y|X=x)$ & $E(Y|X=x) =\int_{-\infty}^\infty yf_{Y|X}(y|x)dy$ \\
+            $E(Y|A) = \sum_y yP(Y=y|A)$ & $E(Y|A) = \int_{-\infty}^\infty yf(y|A)dy$ \\ 
+            \bottomrule
+            \end{tabular}
+        }
+\begin{description}
+\begin{comment}
+    \item[Conditioning on a Random Variable] - We can also find the expected value of $Y$ given the random variable $X$. The resulting expectation, $E(Y|X)$ is \emph{not a number but a function of the random variable X}. For an easy way to find $E(Y|X)$, find $E(Y|X = x)$ and then plug in $X$ for all $x$. This changes the conditional expectation of $Y$ from a function of a number $x$, to a function of the random variable $X$.
+\end{comment}
+    \item[Properties of Conditioning on Random Variables] \quad
+    \begin{enumerate}
+        \item $E(Y|X) = E(Y)$ if $X \independent Y$
+        \item $E(h(X)|X) = h(X)$ (taking out what's known). \\
+            $E(h(X)W|X) = h(X)E(W|X)$
+        
+    \end{enumerate}
+\end{description}
+\section{Adam's Law}
+\begin{description}
+	\item$E(E(Y|X)) = E(Y)$
+	\item For any set of events that partition the sample space, $A_1, A_2, \dots, A_n$ or just simply $A, A^c$, the following holds:
+    \begin{align*}
+        E(Y) &= E(Y|A)P(A) + E(Y|A^c)P(A^c) \\
+        E(Y) &= E(Y|A_1)P(A_1) + \dots + E(Y|A_n)P(A_n)
+    \end{align*}
+    \item[Example] Let $X\sim FS(p)$ and $p \sim Beta(a,b)$. $E(E(X|p))=E(\frac{1}{p})$. Then use LOTUS and integrate. If integration looks painful, see if you can write the integral in terms of a PDF so that the integral equals 1. 
+\end{description}
+\begin{comment}
+\subsection{Law of Total Expectation}
+For any set of events $B_1, B_2, B_3, ... B_n$ that partition the sample space (simplest case being $\{B, B^c\})$: \[E(XI_{B_i}) = \sum_{i=1}^{n}E(X | B_i)P(B_i)\]
+\\end{comment}
+\subsection{Eve's Law | Conditional Variance}
+\begin{description}
+    \item[Eve's Law] (aka Law of Total Variance) \quad
+    \[\var(Y) = E(\var(Y|X)) + \var(E(Y|X))\]
+\end{description}
+
+
+\section{Section 12 - MVN, LLN, CLT}
+
+\section{Law of Large Numbers (LLN)}
+Let us have $X_1, X_2, X_3 \dots$ be i.i.d.. We define \[\bar{X}_n = \frac{X_1 + X_2 + X_3 + \dots + X_n}{n}\] 
+\textbf{The Law of Large Numbers states that as $n \longrightarrow \infty$, $\bar{X}_n \longrightarrow E(X)$}\\
+\textbf{Example}: Women's heights $\sim N(5.5, .025^2)$. A height of 5ft is $2\sigma$ away from the true population mean of 5.5ft. That means that the true population proportion of women shorter than 5 is 0.025. Based on the LLN, the sample proportion should be closer to the true population proportion of 2.5\% more often when $n$ is larger. 
+
+\subsection{Central Limit Theorem (CLT)}
+\subsubsection{Approximation using CLT}
+We use $\dot{\,\sim\,}$ to denote \emph{is approximately distributed}. We can use the central limit theorem when we have a random variable, $Y$ that is a sum of $n$ i.i.d. random variables with $n$ large. Let us say that $E(Y) = \mu_Y$ and $\var(Y) = \sigma^2_Y$. We have that:
+\[Y \dot{\,\sim\,} \N(\mu_Y, \sigma^2_Y)\]
+
+When we use central limit theorem to estimate $Y$, we usually have $Y = X_1 + X_2 + \dots + X_n$ or $Y = \bar{X}_n= \frac{1}{n}(X_1 + X_2 + \dots + X_n)$. Specifically, if we say that each of the iid $X_i$ have mean $\mu_X$ and $\sigma^2_X$, then we have the following approximations.
+
+\[ X_1 + X_2 + \dots + X_n \dot{\,\sim\,} \N(n\mu_X, n\sigma^2_X) \]
+\[ \bar{X}_n = \frac{1}{n}(X_1 + X_2 + \dots + X_n) \dot{\,\sim\,} \N(\mu_X, \frac{\sigma^2_X}{n}) \]
+
+
+\subsubsection{Asymptotic Distributions using CLT}
+
+We use $\xrightarrow{d}$ to denote \emph{converges in distribution to} as $n \longrightarrow \infty$. These are the same results as the previous section, only letting $n \longrightarrow \infty$ and not letting our normal distribution have any $n$ terms.
+\[\frac{1}{\sigma\sqrt{n}} (X_1 + \dots + X_n - n\mu_X) \xrightarrow{d} \N(0, 1)\]
+\[\frac{\bar{X}_n - \mu_X}{\sfrac{\sigma}{\sqrt{n}}} \xrightarrow{d} \N(0, 1)\]
+
+
+\section{Inequalities and Limit Theorems}
+\subsection{Bounds on tail end probabilities}
+\begin{description}
+\item[Markov]
+\[P(X \geq a) \leq \frac{E|X|}{a}\]
+\item[Chebychev] If $X$ and $Y$ are independent, set $W=X-Y$ which has mean $E(W)=E(X)-E(Y)=0$ to solve. Adding variables that sum to 0 is a good strategy to use.
+\[P(|X - \mu| \geq a) \leq \frac{\sigma^2}{a^2}\]
+
+\item[Chernoff] For any r.v. $X$ and constants $a>0$ and $t>0$,
+\[P(X \geq a) \leq \frac{E(e^{tX})}{e^{ta}}\]
+\end{description}
+\subsection{Bounds on Expectation}
+Remember that it's okay to replace expectation with equivalent expectation statements since expectation is just a number, but it's NOT okay to replace an r.v. inside of an expectation statement.
+\begin{description}
+
+\item[Cauchy-Schwarz] $|E(XY)| \leq \sqrt{E(X^2)E(Y^2)}$
+\item[Jensen]
+\begin{align*}
+g \text{ convex}: E(g(X)) \geq g(E(X)) \\ 
+g \text{ concave}: E(g(X)) \leq g(E(X))\\
+E|X| \geq |EX|\\
+E\left(\frac{1}{X}\right) \geq \frac{1}{(EX)}, \text{ for positive r.v.s. X}\\
+E(log(X)) \leq log(EX), \text{ for positive r.v.s. X}
+\end{align*}
+    
+\end{description}
+
+    
+\section{Markov Chains}
+
+\subsection{Definition}
+$X_1$ is a markov chain if its next state depends only on its current state. Formal Definition:
+\[P(X_{n+1}=a_{n+1}|X_1=a_1,..., X_n=a_n) = P(X_{n+1}=a_{n+1}| X_n=a_n)\]
+\subsection{State Properties}
+\begin{itemize}
+\item A state of MC is \textbf{recurrent} if, starting in that state, the MC will return to that state \emph{eventually} with $p(\text{return eventually}) = 1$. Otherwise it is \textbf{transient}
+\item If every state is recurrent, this it's a recurrent chain. If a single state is transient, then it's a transient chain.
+\item The \textbf{period} of a state is the \textbf{greatest common denominator} of all the lengths from that state to itself. Periods only exist if the chain is \textbf{irreducible}. In an irreducible chain, all states have the same period.
+
+\end{itemize}
+
+
+\subsection{Transition Matrix}
+Element $q_{ij}$ in square transition matrix Q is the probability that the chain goes from state $i$ to state $j$, or more formally:
+\[q_{ij} = P(X_{n+1} = j | X_n = i)\]
+
+To find the probability that the chain goes from state $i$ to state $j$ in $m$ steps, take the $(i, j)^\textnormal{th}$ element of $Q^m$.
+\[q^{(m)}_{ij} = P(X_{n+m} = j | X_n = i)\]
+If $X_0$ is distributed according to row-vector PMF $\vec{p}$ (e.g. $p_j = P(X_0 = i_j)$), then the PMF of $X_n$ is $\vec{p}Q^n$.
+
+
+
+\subsection{Chain Properties}
+ 
+\begin{itemize}
+\item A chain is \textbf{irreducible} if you can get from anywhere to anywhere. An irreducible chain must have all of its states recurrent. 
+\item A chain is \textbf{aperiodic} if it has period 1 and is \textbf{periodic} otherwise. 
+\end{itemize}
+A chain is \textbf{reversible} with respect to $\vec{s}$ if $s_iq_{ij} = s_jq_{ji}$ for all $i, j$.  Vector of probabilities are same running forwards in time or backwards in time. Examples include random walks on undirected networks, or any chain with $q_{ij} = q_{ji}$, where the Markov chain would be stationary with respect to $\vec{s} = (\frac{1}{M}, \frac{1}{M}, \dots, \frac{1}{M})$. \\
+\textbf{Reversibiity Condition Implies Stationary Distribution} 
+\subsection{Stationary Distribution}
+
+
+Let us say that the vector $\vec{p} = (p_1, p_2, \dots, p_M)$ is a possible and valid PMF of where the Markov Chain is at at a certain time. We will call this vector the stationary distribution, $\vec{s}$, if it satisfies $\vec{s}Q = \vec{s}$. If $X_t$ has the stationary distribution, then all future $X_{t+1}, X_{t + 2}, \dots$ also has the stationary distribution. \\
+\[(s \quad 1-s)\left( \begin{array}{cc}
+p & 1-p \\
+1-q & q \end{array} \right)\] To solve for the stationary distribution, you can solve for $(Q' - I)(\vec{s})' = 0$. The stationary distribution is uniform if the columns of $Q$ sum to 1.
+
+
+\subsection{Random Walk on Undirected Network}
+If you have a certain number of nodes with edges between them, and a chain can pick any edge randomly and move to another node, then this is a random walk on an undirected network. The stationary distribution of this chain is proportional to the $\textbf{degree sequence}.$ The \textbf{degree sequence} is the vector of the degrees of each node, defined as how many edges it has.
+
+
+
+\section{Distribution Properties}
+
+\subsubsection{Geometric Story}
+$X$ is the number of ``failures" that we will achieve before we achieve our first success. Our successes have probability $p$ 
+\[1^2-2pq = p^2+q^2\]
+\[1^2=(p+q)^2=p^2+2pq+q^2\]
+\subsubsection{First Success}
+$X$ is the number of ``failures" that we will achieve until our first success, including the success, or number of games needed in order for someone to win the game (including the win). Our successes have probability $p$. If $X \sim \text{Geom}(p)$, then $X+1\sim FS(p)$.
+\subsubsection{Negative hypergeometric} has PMF $\frac{1}{g+1}$ where g is the event you want
+\subsection{Poisson Process}
+\begin{description}
+\item[Definition] We have a Poisson Process if we have 
+\begin{enumerate}
+    \item Arrivals at various times with an average of $\lambda$ per unit time.
+    \item The number of arrivals in a time interval of length $t$ is $\Pois(\lambda t)$
+    \item Number of arrivals in disjoint time intervals are independent.
+\end{enumerate}
+\item[Count-Time Duality] - We wish to find the distribution of $T_1$, the first arrival time. We see that the event $T_1 > t$, the event that you have to wait more than $t$ to get the first email, is the same as the event $N_t = 0$, which is the event that the number of emails in the first time interval of length $t$ is 0. We can solve for the distribution of $T_1$.
+\[P(T_1 > t) = P(N_t = 0) = e^{-\lambda t} \longrightarrow P(T_1 \leq t) = 1 - e^{-\lambda t}\]
+Thus we have $T_1 \sim \Expo(\lambda)$. And similarly, the interarrival times between arrivals are all $\Expo(\lambda)$, (e.g. $T_i - T_{i-1} \sim \Expo(\lambda)$).
+\end{description}
+
+\subsubsection{Poisson Properties (Chicken and Egg Results)}
+We have $X \sim \Pois(\lambda_1)$ and $Y \sim \Pois(\lambda_2)$ and $X \independent Y$.
+
+\begin{enumerate}
+    \item $X + Y \sim \Pois(\lambda_1 + \lambda_2)$
+    \item $X | (X + Y = k) \sim \Bin\left(k, \frac{\lambda_1}{\lambda_1 + \lambda_2}\right)$
+    \item If we have that $Z \sim \Pois(\lambda)$, and we randomly and independently ``accept" every item in $Z$ with probability $p$, then the number of accepted items $Z_1 \sim \Pois(\lambda p)$, and the number of rejected items $Z_2 \sim \Pois(\lambda q)$, and $Z_1 \independent Z_2$.
+\end{enumerate}
+
+\subsubsection{Normal}
+ALWAYS DRAW A PICTURE! For $X$ is distributed $\N(\mu, \sigma^2)$, we know the following:
+\begin{description}
+	\item[Symmetrical] $Y=|X|$ means values are twice as likely to occur because both positive and negative values are counted. Answer is 2 times the PDF of the original normal distribution. Also, $P(Z^2>1)=P(Z<-1)+P(Z>1)=\Phi(-1)+\Phi(-1)$. If it's a standard normal, use the  68-95-99.7 Rule.
+    \item[Transformable] $X=\mu + \sigma Z$ where bZ means the variance becomes $b^2$ and adding $b$ just shifts the mean by $b$. 
+    \item[Standard Normal]Remember it's $\sqrt{Var(x)}$!!!
+    \[\frac{X - \mu}{\sigma} \sim \N(0, 1) \]
+	\item[68-95-99 rule] $P(\|X-\mu\| < \sigma) = .68$, $P(\|X-\mu\| < 2\sigma) = .95$, and $P(\|X-\mu\| < 3\sigma) = 99.7$
+\end{description}
+
+\subsubsection{Beta Properties}
+Say this ``Beta is the prior conjugate of the binomial," if using it. If you condition on something with a likelihood that is binomial, the new r.v. will still be distributed beta (but with different parameters)
+\begin{align*}
+        X|p &\sim \Bin(n, p) \\
+        p &\sim \Beta(a, b)
+    \end{align*}
+Then after observing the value $X = x$, we get a posterior distribution $p|(X=x) \sim \Beta(a + x, b + n - x)$
+
+\subsection{Notable Uses of the Beta Distribution}
+\begin{description}
+    \item[\dots as the Order Statistics of the Uniform] -  The smallest of three Uniforms is distributed $U_{(1)} \sim \Beta(1, 3)$. The middle of three Uniforms is distributed $U_{(2)} \sim \Beta(2, 2)$, and the largest $U_{(3)} \sim \Beta(3, 1)$. The distribution of the the $j^{th}$ order statistic of $n$ i.i.d Uniforms is:
+    \begin{align*}
+        U_{(j)} &\sim \Beta(j, n - j + 1) \\
+        f_{U_{(j)}}(u) &= \frac{n!}{(j-1)!(n-j)!}t^{j-1}(1-t)^{n-j}
+    \end{align*}
+
+\end{description}
+
+\subsubsection{Gamma}
+\begin{description}
+\item $\Gamma (a+1)=a\Gamma (a)$ for all $a>0$
+\item $\Gamma (n) = (n-1)!$ if $n$ is a positive integer
+\end{description}
+\subsubsection{Bank and Post Office Result}
+Let us say that we have $X \sim \Gam(a, \lambda)$ and $Y \sim \Gam(b, \lambda)$, and that $X \independent Y$. By Bank-Post Office result, we have that:
+\begin{align*}
+    X + Y &\sim \Gam(a + b, \lambda)\\
+    \frac{X}{X + Y} &\sim \Beta(a, b)\\
+    X + Y &\independent \frac{X}{X + Y}
+\end{align*}
+\subsubsection{Memoryless Property} Geometric: If you're waiting for the first Heads in a sequence of fair coin tosses, the result of the previous tosses has no impact on the tosses we'll need. Expo: after you've waited $s$ minutes, the probability you'll have to waiter another $t$ minutes is exactly the same as when you'd just started waiting. \[P(X\geq s+1|X \geq s) = P(X\geq t)\]
+\section{How they all relate}
+\begin{enumerate}
+    \item $\Bin(n, p) \rightarrow \Pois(\lambda)$ as $n \rightarrow \infty$, $p \rightarrow 0$, $np = \lambda$.
+    \item sum of $n$ i.i.d. expo with rate $\lambda$ is gamma(n,$\lambda$). 
+    \item sum of hgeom is NOT hgeom 
+    \item $\NBin(1, p) \sim \Geom(p)$
+    \item $\Beta(1, 1) \sim \Unif(0, 1)$
+    \item $\Gam(1, \lambda) \sim \Expo(\lambda)$
+    \item $\chi^2_n \sim \Gam\left(\frac{n}{2}, \frac{1}{2}\right)$
+\end{enumerate}
+
+\subsubsection{Convolutions of Random Variables}
+A convolution of $n$ random variables is simply their sum.
+\begin{enumerate}
+    \item  $X \sim \Pois(\lambda_1)$, $Y \sim \Pois(\lambda_2)$, $X \independent Y \longrightarrow X + Y \sim \Pois(\lambda_1 + \lambda_2)$
+    \item  $X \sim \Bin(n_1, p)$, $Y \sim \Bin(n_2, p)$, $X \independent Y \longrightarrow X + Y \sim \Bin(n_1 + n_2, p)$
+    \item  $X \sim \Gam(n_1, \lambda)$, $Y \sim \Gam(n_2, \lambda)$, $X \independent Y \longrightarrow  X + Y \sim\Gam(n_1 + n_2, \lambda)$
+    \item  $X \sim \NBin(r_1, p)$, $Y \sim \NBin(r_2, p)$, $X \independent Y \longrightarrow  X + Y \sim\NBin(r_1 + r_2, p)$
+    \item All of the above are approximately normal when $\lambda, n, r$ are large by the Central Limit Theorem.
+    \item  $Z_1 \sim \N(\mu_1, \sigma_1^2)$, $Z_2 \sim \N(\mu_2, \sigma_2^2)$, $Z_1 \independent Z_2 \longrightarrow  Z_1 + Z_2 \sim \N(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)$
+\end{enumerate}
+
+\section*{Binomial, Bernoulli, Neg. Binomial, Geometric, Hypergeometric}
+DWR = Draw w/ replacement, DWoR = Draw w/o replacement
+\begin{center}
+    \begin{tabular}{ccc}
+    \toprule
+    ~ & \textbf{DWR} & \textbf{DWoR}  \\
+    \midrule
+        \textbf{Fixed no. of trials (n)} & Binom/Bern & HGeom \\ 
+        ~ & (Bern if $n = 1$) & ~ \\ 
+        \textbf{Draw until $k$ successes} & NBin/Geom & NHGeom \\ 
+        ~ & (Geom if $k = 1$) & ~ \\ \bottomrule
+    \end{tabular}
+\end{center}
+
+\begin{center}
+   
+\end{center}
+
+\section*{Continuous Distributions}
+\begin{description}
+\item[Uniform] Let us say that $U$ is distributed $\Unif(a, b)$. We know the following:
+\begin{description}
+    \item[Properties of the Uniform] For a uniform distribution, the probability of an draw from any interval on the uniform is proportion to the length of the uniform. The PDF of a Uniform is just a constant, so when you integrate over the PDF, you will get an area proportional to the length of the interval.
+    \item[Example] William throws darts really badly, so his darts are uniform over the whole room because they're equally likely to appear anywhere. William's darts have a uniform distribution on the surface of the room. The uniform is the only distribution where the probably of hitting in any specific region is proportion to the area/length/volume of that region, and where the density of occurrence in any one specific spot is constant throughout the whole support.
+    \item[PDF and CDF (top is Unif(0, 1), bottom is Unif(a, b))]  
+\begin{eqnarray*}
+%\Unif(0, 1)
+  %\hspace{.7 in}
+   f(x) = \left\{
+     \begin{array}{lr}
+       1 & x \in [0, 1] \\
+       0 &  x \notin [0, 1]
+     \end{array}
+   \right.
+   %\hspace{.95 in}
+   F(x) = \left\{
+     \begin{array}{lr}
+       0 & x < 0 \\
+       x & x \in [0, 1] \\
+       1 &  x > 1
+     \end{array}
+   \right.\\
+%\Unif(a, b)
+  %\hspace{.65 in}
+   f(x) = \left\{
+     \begin{array}{lr}
+       \frac{1}{b-a} & x \in [a, b] \\
+       0 &  x \notin [a, b]
+     \end{array}
+   \right.
+   %\hspace{.75 in}
+   F(x) = \left\{
+     \begin{array}{lr}
+       0 & x < a \\
+       \frac{x-a}{b-a} & x \in [a, b] \\
+       1 &  x > b
+     \end{array}
+   \right. 
+\end{eqnarray*}
+
+
+    
+\end{description}
+
+\item[Normal] Let us say that $X$ is distributed $\N(\mu, \sigma^2)$. We know the following:
+\begin{description}
+    \item[Central Limit Theorem] The Normal distribution is ubiquitous because of the central limit theorem, which states that averages of independent identically-distributed variables will approach a normal distribution regardless of the initial distribution.
+    \item[Transformable] Every time we stretch or scale the normal distribution, we change it to another normal distribution. If we add $c$ to a normally distributed random variable, then its mean increases additively by $c$. If we multiply a normally distributed random variable by $c$, then its variance increases multiplicatively by $c^2$. Note that for every normally distributed random variable $X \sim \N(\mu, \sigma^2)$, we can transform it to the standard $\N(0, 1)$ by the following transformation:
+    \[\frac{X - \mu}{\sigma} \sim \N(0, 1) \]
+    \item[Example] Heights are normal. Measurement error is normal. By the central limit theorem, the sampling average from a population is also normal.
+    \item[Standard Normal] - The Standard Normal, denoted $Z$, is $Z \sim \N(0, 1)$
+    \item[PDF]
+\[ f(x)=\frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2 \sigma^2}} \]
+    \item[CDF] - It's too difficult to write this one out, so we express it as the function $\Phi(x)$
+\end{description}
+
+
+\item[Exponential Distribution]
+\begin{description}
+\item Let us say that $X$ is distributed $\Expo(\lambda)$. We know the following:
+\begin{description}
+    \item[Story] You're sitting on an open meadow right before the break of dawn, wishing that airplanes in the night sky were shooting stars, because you could really use a wish right now. You know that shooting stars come on average every 15 minutes, but it's never true that a shooting star is ever `'due" to come because you've waited so long. Your waiting time is memorylessness, which means that the time until the next shooting star comes does not depend on how long you've waited already.
+    
+    \item[Example] The waiting time until the next shooting star is distributed $\Expo(4)$. The 4 here is $\lambda$, or the rate parameter, or how many shooting stars we expect to see in a unit of time. The expected time until the next shooting star is $\frac{1}{\lambda}$, or $\frac{1}{4}$ of an hour. You can expect to wait 15 minutes until the next shooting star.
+    
+    \item[Expos are rescaled Expos]
+        \[Y \sim \Expo(\lambda) \rightarrow X = \lambda Y \sim \Expo(1)\]
+     
+    \item[PDF and CDF] The PDF and CDF of a Exponential is:
+\[f(x) = \lambda e^{-\lambda x}, x \in [0, \infty)\]
+\[F(x) = P(X \leq x) = 1 - e^{-\lambda x}, x \in [0, \infty)\]
+    
+    \item[Memorylessness] The Exponential Distribution is the sole continuous memoryless distribution. This means that it's always ``as good as new", which means that the probability of it failing in the next infinitesimal time period is the same as any infinitesimal time period. This means that for an exponentially distributed $X$ and any real numbers $t$ and $s$,
+    \[P(X > s + t | X > s) = P(X > t)\]
+    Given that you've waited already at least $s$ minutes, the probability of having to wait an additional $t$ minutes is the same as the probability that you have to wait more than $t$ minutes to begin with. Here's another formulation.
+    \[X - a | X > a \sim \Expo(\lambda)\]
+
+    Example - If waiting for the bus is distributed exponentially with $\lambda = 6$, no matter how long you've waited so far, the expected additional waiting time until the bus arrives is always $\frac{1}{6}$, or 10 minutes. The distribution of time from now to the arrival is always the same, no matter how long you've waited.
+
+    
+
+\end{description}
+
+\item[Gamma Distribution]
+\begin{description}
+\item Let us say that $X$ is distributed $\Gam(a, \lambda)$. We know the following:
+\begin{description}
+    \item[Story] You sit waiting for shooting stars, and you know that the waiting time for a star is distributed $\Expo(\lambda)$. You want to see ``$a$" shooting stars before you go home. $X$ is the total waiting time for the $a$th shooting star.
+    \item[Example]  You are at a bank, and there are 3 people ahead of you. The serving time for each person is distributed Exponentially with mean of 2 time units. The distribution of your waiting time until you begin service is $\Gam(3, \frac{1}{2})$
+    \item[PDF] The PDF of a Gamma is:
+\begin{eqnarray*}
+f(x) = \frac{1}{\Gamma(a)}(\lambda x)^ae^{-\lambda x}\frac{1}{x},
+\hspace{.1 in}
+x \in [0, \infty)
+\end{eqnarray*}
+    \item[Properties and Representations]
+\end{description}
+\end{description}
+\end{description}
+
+\end{description}
+\[E(X) = \frac{a}{\lambda},  Var(X) = \frac{a}{\lambda^2}\]
+\[X \sim G(a, \lambda),  Y \sim G(b, \lambda),  X \independent Y \rightarrow  X + Y \sim G(a + b, \lambda), \frac{X}{X + Y} \independent X + Y \]
+\[X \sim \Gam(a, \lambda) \rightarrow X = X_1 + X_2 + ... + X_a \textnormal{ for $X_i$ i.i.d. $\Expo(\lambda)$} \]
+\[\Gam(1, \lambda) \sim \Expo(\lambda) \]
+
+\begin{description}
+\item[$\chi^2$ Distribution]
+\begin{description}
+\item Let us say that $X$ is distributed $\chi^2_n$. We know the following:
+\begin{description}
+    \item[Story] A Chi-Squared(n) is a sum of $n$ independent squared normals.
+    \item[Example]  The sum of squared errors are distributed $\chi^2_n$
+    \item[PDF] The PDF of a $\chi^2_1$ is:
+\begin{eqnarray*}
+f(w) = \frac{1}{\sqrt{2\pi w}}e^{-w/2},
+w \in [0, \infty)
+\end{eqnarray*}
+    \item[Properties and Representations]
+\end{description}
+\end{description}
+\end{description}
+\[E(\chi^2_n) = n, Var(X) = 2n\]
+\[\chi_n^2 \sim \Gam\left(\frac{n}{2}, \frac{1}{2}\right)\]
+\[\chi_n^2 = Z_1^2 + Z_2^2 + \dots + Z_n^2, Z \sim^{i.i.d.} \N(0, 1)\]
+
+\section*{Discrete Distributions}
+
+\begin{description}
+\item[Bernoulli] The Bernoulli distribution is the simplest case of the Binomial distribution, where we only have one trial, or $n=1$. Let us say that X is distributed \Bern($p$). We know the following:
+\begin{description}
+    \item[Story.] $X$ ``succeeds" (is 1) with probability $p$, and $X$ ``fails" (is 0) with probability $1-p$.
+    \item[Example.] A fair coin flip is distributed \Bern($\frac{1}{2}$).
+    \item[PMF.] The probability mass function of a Bernoulli is:
+\[P(X = x) = p^x(1-p)^{1-x}\]
+or simply
+\[P(X = x) = \begin{cases} p, & x = 1 \\ 1-p, & x = 0 \end{cases}\]
+\end{description}
+
+\item[Binomial] Let us say that $X$ is distributed \Bin($n,p$). We know the following:
+\begin{description}
+    \item[Story] $X$ is the number of "successes" that we will achieve in $n$ independent trials, where each trial can be either a success or a failure, each with the same probability $p$ of success. We can also say that $X$ is a sum of multiple independent $Bern(p)$ random variables. Let $X \sim \Bin(n, p)$ and $X_j \sim \Bern(p)$, where all of the Bernoullis are independent. We can express the following:
+    \[X = X_1 + X_2 + X_3 + \dots + X_n\]
+    \item[Example] If Jeremy Lin makes 10 free throws and each one independently has a $\frac{3}{4}$ chance of getting in, then the number of free throws he makes is distributed  \Bin($10,\frac{3}{4}$), or, letting X be the number of free throws that he makes, X is a Binomial Random Variable distributed  \Bin($10,\frac{3}{4}$).
+    \item[PMF] The probability mass function of a Binomial is:
+\[P(X = x) = {n  \choose x} p^x(1-p)^{n-x}\]
+    \item[Binomial Coefficient] ${n  \choose k}$ is a function of $n$ and $k$ and is read \emph{n choose k}, and means out of $n$ possible indistinguishable objects, how many ways can I possibly choose $k$ of them? The formula for the binomial coefficient is:
+\[{n  \choose k} = \frac{n!}{k!(n-k)!}\]
+\end{description}
+
+
+\item[Geometric] Let us say that $X$ is distributed $\Geom(p)$. We know the following:
+\begin{description}
+    \item[Story] $X$ is the number of ``failures" that we will achieve before we achieve our first success. Our successes have probability $p$.
+    \item[Example] If each pokeball we throw has a $\frac{1}{10}$ probability to catch Mew, the number of failed pokeballs will be distributed $\Geom(\frac{1}{10})$.
+    \item[PMF] With $q = 1-p$, the probability mass function of a Geometric is:
+\[P(X = k) = q^kp\]
+\end{description}
+
+
+
+\item[Negative Binomial] Let us say that $X$ is distributed $\NBin(r, p)$. We know the following:
+\begin{description}
+    \item[Story] $X$ is the number of ``failures" that we will achieve before we achieve our $r$th success. Our successes have probability $p$.
+    \item[Example] Thundershock has 60\% accuracy and can faint a wild Raticate in 3 hits. The number of misses before Pikachu faints Raticate with Thundershock is distributed $\NBin(3, .6)$.
+    \item[PMF] With $q = 1-p$, the probability mass function of a Negative Binomial is:
+\[P(X = n) = {n+r - 1 \choose r -1}p^rq^n\]
+\end{description}
+
+\item[Hypergeometric] Let us say that $X$ is distributed $\Hypergeometric(w, b, n)$. We know the following:
+\begin{description}
+    \item[Story] In a population of $b$ undesired objects and $w$ desired objects, $X$ is the number of ``successes" we will have in a draw of $n$ objects, without replacement.
+    \item[Example] 1) Let's say that we have only $b$ Weedles (failure) and $w$ Pikachus (success) in Viridian Forest. We encounter $n$ Pokemon in the forest, and $X$ is the number of Pikachus in our encounters. 2) The number of aces that you draw in 5 cards (without replacement). 3) You have $w$ white balls and $b$ black balls, and you draw $b$ balls. You will draw $X$ white balls. 4) Elk Problem - You have $N$ elk, you capture $n$ of them, tag them, and release them. Then you recollect a new sample of size $m$. How many tagged elk are now in the new sample?
+    \item[PMF] The probability mass function of a Hypergeometric:
+\[P(X = k) = \frac{{w \choose k}{b \choose n-k}}{{w + b \choose n}}\]
+\end{description}
+
+
+\item[Poisson] Let us say that $X$ is distributed $\Pois(\lambda)$. We know the following:
+\begin{description}
+    \item[Story] There are rare events (low probability events) that occur many different ways (high possibilities of occurences) at an average rate of $\lambda$ occurrences per unit space or time. The number of events that occur in that unit of space or time is $X$.
+    
+    \item[Example] A certain busy intersection has an average of 2 accidents per month. Since an accident is a low probability event that can happen many different ways, the number of accidents in a month at that intersection is distributed $\Pois(2)$. The number of accidents that happen in two months at that intersection is distributed $\Pois(4)$
+    
+    \item[PMF] The PMF of a Poisson is:
+\[P(X = k) = \frac{e^{-\lambda}\lambda^k}{k!}\]
+\end{description}
+\end{description}
+
+
+
+
+
+\section*{Multivariate Distributions}
+
+\begin{description}
+\item[Multinomial]  
+    Let us say that the vector $\vec{\textbf{X}} = (X_1, X_2, X_3, \dots, X_k) \sim \textnormal{Mult}_k(n, \vec{p})$  where $\vec{p} = (p_1, p_2, \dots, p_k)$.
+\begin{description}
+    \item[Story] - We have $n$ items, and then can fall into any one of the $k$ buckets independently with the probabilities $\vec{p} = (p_1, p_2, \dots, p_k)$.
+    \item[Example] - Let us assume that every year, 100 students in the Harry Potter Universe are randomly and independently sorted into one of four houses with equal probability. The number of people in each of the houses is distributed $\Mult_4$(100, $\vec{p}$), where $\vec{p} = (.25, .25, .25, .25)$.
+        Note that $X_1 + X_2 + \dots + X_4 = 100$, and they are dependent.
+    \item[Multinomial Coefficient] The number of permutations of $n$ objects where you have $n_1, n_2, n_3 \dots, n_k$ of each of the different variants is the \textbf{multinomial coefficient}.
+        \[{n \choose n_1n_2\dots n_k} = \frac{n!}{n_1!n_2!\dots n_k!}\]
+    \item[Joint PMF] - For $n = n_1 + n_2 + \dots + n_k$
+        \[P(\vec{X} = \vec{n}) = {n \choose n_1n_2\dots n_k}p_1^{n_1}p_2^{n_2}\dots p_k^{n_k}\]
+    \item[Lumping] - If you lump together multiple categories in a multinomial, then it is still multinomial. A multinomial with two dimensions (success, failure) is a binomial distribution.
+    \item[Variances and Covariances] - For $(X_1, X_2, \dots, X_k) \sim \Mult_k(n, (p_1, p_2, \dots, p_k))$, we have that marginally $X_i \sim \Bin(n, p_i)$ and hence $\var(X_i) = np_i(1-p_i)$. Also, for $i\neq j$, $\cov(X_i, X_j) = -np_ip_j$, which is a result from class.
+    \item[Marginal PMF and Lumping]
+        \[X_i \sim \Bin(n, p_i)\]
+        \[X_i + X_j \sim \Bin(n, p_i + p_j)\]
+\end{description}
+\end{description}
+        \[\mathsmaller{\mathsmaller{X_1, X_2, X_3 \sim \Mult_3(n, (p_1, p_2, p_3)) \rightarrow X_1, X_2 + X_3 \sim \Mult_2(n, (p_1, p_2 + p_3))}}\]
+        \[X_1, \dots, X_{k-1} | X_k = n_k \sim \Mult_{k-1}\left(n - n_k, \left(\frac{p_1}{1 - p_k}, \dots, \frac{p_{k-1}}{1 - p_k}\right)\right)\]
+\begin{description}
+\item[Multivariate Uniform]
+See the univariate uniform for stories and examples. For multivariate uniforms, all you need to know is that probability is proportional to volume. More formally, probability is the volume of the region of interest divided by the total volume of the support. Every point in the support has equal density of value $\frac{1}{\textnormal{Total Area}}$.
+
+\item[Multivariate Normal (MVN)]
+A vector $\vec{X} = (X_1, X_2, X_3, \dots, X_k)$ is declared Multivariate Normal if any linear combination is normally distributed (e.g. $t_1X_1 + t_2X_2 + \dots + t_kX_k$ is Normal for any constants $t_1, t_2, \dots, t_k$). The parameters of the Multivariate normal are the mean vector $\vec{\mu} = (\mu_1, \mu_2, \dots, \mu_k)$ and the covariance matrix where the $(i, j)^{\textnormal{th}}$ entry is $\cov(X_i, X_j)$. For any MVN distribution: 1) Any sub-vector is also MVN. 2) If any two elements of a multivariate normal distribution are uncorrelated, then they are independent. Note that 2) does not apply to most random variables. 
+
+\end{description}
+
+
+
+
+
+
+\rule{0.3\linewidth}{0.25pt}
+\scriptsize
+
+Compiled by William Chen '14. Please email comments, suggestions, and errors to \texttt{williamzc@gmail.com}
+% Cheatsheet format from
+% http://www.stdout.org/$\sim$winston/latex/
+
+
+\end{multicols}
+
+
+
+
+\begin{sidewaystable}
+
+    \begin{center}
+    \renewcommand{\arraystretch}{3}
+    \begin{tabular}{cccccc}
+    \textbf{Distribution} & \textbf{PDF and Support} & \textbf{EV}  & \textbf{Variance} & \textbf{MGF}\\
+    \hline \hline
+    \shortstack{Bernoulli \\ \Bern($p$)} & \shortstack{$P(X=1) = p$ \\$ P(X=0) = q$} & $p$ & $pq$ & $q + pe^t$ \\
+    \hline
+    \shortstack{Binomial \\ \Bin($n, p$)} & \shortstack{$P(X=k) = {n \choose k}p^k(1-p)^{n-k}$  \\ $k \in \{0, 1, 2, \dots n\}$}& $np$ & $npq$ & $(q + pe^t)^n$ \\
+    \hline
+    \shortstack{Geometric \\ \Geom($p$)} & \shortstack{$P(X=k) = q^kp$  \\ $k \in \{$0, 1, 2, \dots $\}$}& $q/p$ & $q/p^2$ & $\frac{p}{1-qe^t}, qe^t < 1$\\
+    \hline
+    \shortstack{Negative Binom. \\ \NBin($r, p$)} & \shortstack{$P(X=n) = {r + n - 1 \choose r -1}p^rq^n$ \\ $n \in \{$0, 1, 2, \dots $\}$} & $rq/p$ & $rq/p^2$ &  $(\frac{p}{1-qe^t})^r, qe^t < 1$\\
+    \hline
+    \shortstack{Hypergeometric \\ \Hypergeometric($w, b, n$)} & \shortstack{$P(X=k) = \sfrac{{w \choose k}{b \choose n-k}}{{w + b \choose n}}$ \\ $k \in \{0, 1, 2, \dots,  n\}$} & $\mu = \frac{nw}{b+w}$ &$\frac{w+b-n}{w+b-1}n\frac{\mu}{n}(1 - \frac{\mu}{n})$& $-$  \\
+    \hline
+    \shortstack{Poisson \\ \Pois($\lambda$)} & \shortstack{$P(X=k) = \frac{e^{-\lambda}\lambda^k}{k!}$ \\ $k \in \{$0, 1, 2, \dots $\}$} & $\lambda$ & $\lambda$ & $e^{\lambda(e^t-1)}$ \\
+    \hline
+    \hline
+    \shortstack{Uniform \\ \Unif($a, b$)} & \shortstack{$ f(x) = \frac{1}{b-a}$ \\$ x \in (a, b) $} & $\frac{a+b}{2}$ & $\frac{(b-a)^2}{12}$ &  $\frac{e^{tb}-e^{ta}}{t(b-a)}$\\
+    \hline
+    \shortstack{Normal \\ $\N(\mu, \sigma^2)$} & \shortstack{$f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\sfrac{(x - \mu)^2}{(2 \sigma^2)}}$ \\ $x \in (-\infty, \infty)$} & $\mu$  & $\sigma^2$ & $e^{t\mu + \frac{\sigma^2t^2}{2}}$\\
+    \hline
+    \shortstack{Exponential \\ $\Expo(\lambda)$} & \shortstack{$f(x) = \lambda e^{-\lambda x}$\\$ x \in (0, \infty)$} & $\sfrac{1}{\lambda}$  & $\sfrac{1}{\lambda^2}$ & $\frac{\lambda}{\lambda - t}, t < \lambda$\\
+    \hline
+    \shortstack{Gamma \\ $\Gam(a, \lambda)$} & \shortstack{$f(x) = \frac{1}{\Gamma(a)}(\lambda x)^ae^{-\lambda x}\frac{1}{x}$\\$ x \in (0, \infty)$} & $\sfrac{a}{\lambda}$  & $\sfrac{a}{\lambda^2}$ & $\left(\frac{\lambda}{\lambda - t}\right)^a, t < \lambda$\\
+    \hline
+    \shortstack{Beta \\ \Beta(a, b)} & \shortstack{$f(x) = \frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1}$\\$x \in (0, 1) $} & $\mu = \frac{a}{a + b}$  & $\frac{\mu(1-\mu)}{(a + b + 1)}$ & $-$\\
+    \hline
+    \shortstack{Chi-Squared \\ $\chi_n^2$} & \shortstack{$\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2 - 1}e^{-x/2}$\\$x \in (0, \infty) $} & $n$  & $2n$ & $(1 - 2t)^{-n/2}, t < 1/2$\\
+    \hline
+    \hline
+    \shortstack{Multivar Uniform \\ A is support} & \shortstack{$f(x) = \frac{1}{|A|}$\\$  x \in A $} & $-$  & $-$ & $-$\\
+    \hline
+    \shortstack{Multinomial \\ \Mult$_k(n, \vec{p}$)} & \shortstack{$P(\vec{X} = \vec{n}) = {n \choose n_1\dots n_k}p_1^{n_1}\dots p_k^{n_k}$ \\ $n = n_1 + n_2 + \dots + n_k$} & $n\vec{p}$ & \shortstack{$\var(X_i) = np_i(1-p_i)$ \\ $\cov(X_i, X_j) = -np_ip_j$} & $\left(\sum_{i=1}^k p_ie^{t_i}\right)^n$ \\
+    \hline
+    \hline
+
+    \end{tabular}
+
+
+    \renewcommand{\arraystretch}{0.8}% Tighter
+    \begin{tabular}{cccc}
+    \textbf{Cauchy-Schwarz} & \textbf{Markov} & \textbf{Chebychev} & \textbf{Jensen} \\ 
+    $|E(XY)| \leq \sqrt{E(X^2)E(Y^2)}$ & 
+    $\displaystyle P(X \geq a) \leq \frac{E|X|}{a}$ &
+    $\displaystyle P(|X - \mu_X| \geq a) \leq \frac{\sigma^2_X}{a^2}$ &
+    $g$ convex: $E(g(X)) \geq g(E(X))$ \\ [0ex]
+    &&& $g$ concave: $E(g(X)) \leq g(E(X))$ \\ 
+    \end{tabular}
+    \end{center}
+\end{sidewaystable} 
+
+
+\end{document}
