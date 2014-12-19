@@ -8,8 +8,9 @@ Here's a quickview of the cheatsheet: [Preview](https://www.dropbox.com/s/j5fs1i
 I basically used the first two pages (with some changes) for the midterm and the first four pages in the final. Fortunately I'm done with the class, but that also means that I won't be touching this cheatsheet again. 
 
 A few edits I would make if I were taking this class again:
-- Create a table of distributions with their MGFs and CDFs (a table of distributions with their PMF/PDF, Mean, and Variance are already provided to you on the exam)
+- Create a complete table of distributions with their MGFs and CDFs (a table of distributions with their PMF/PDF, mean, and variance are already provided to you on the exam)
 - Add a section on the chi-squared distribution 
+- Add a section on the t-distribution 
 
 I also wish that I had used this cheatsheet while I worked on homework and added things that I had trouble with to the cheatsheet.
 
