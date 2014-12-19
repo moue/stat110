@@ -116,6 +116,7 @@
 \end{center}
 Go through first and put a box with a blank for the answer. Then set up the problem. Rewrite variables \emph{and} what they mean, especially for questions further from the top. Don't just use formulas, also name them!
 \section{Math}
+
 \begin{description}
 \item \[\frac{d}{dx}e^{-x^2a} = 2xae^{-ax^2}\]
 \item[Logs] Always take the log on the r.v., not in the probability statement! 
@@ -169,7 +170,7 @@ Conditional probability is still probability, and also works as PDF!
 Calvin and Hobbes play a match consisting of a series of games, where Calvin has probability $p$ of winning each game independently. The first player to win two games more than his opponent wins the match. 
 
 \begin{description}
-\item[To find the probability that Calvin wins a match], use LOTP, conditioning on the results of the first match. If the sequence is [CH] or [HC], when we're back at where we started. Then you solve for the probability you want. 
+\item[To find the probability that Calvin wins a match], use LOTP, conditioning on the results of the first match. If the sequence is [CH] or [HC], then we're back at where we started. Then you solve for the probability you want. 
 \item[To find the expected number of games played], consider each pair of games as a trial. Success: [HH] or [CC]. Failure: [HC] or [CH]. $X$ = number of trials. $G = 2X$ = number of games. $X \sim FS(p)$ where $p=p^2+q^2$.
 \end{description}
 \section{Bayes Rule}
@@ -291,12 +292,11 @@ X&=-ln(1-U)
         \[M_Y(t) = E(e^{t(aX + c)}) =  e^{ct}E(e^{(at)X}) = e^{ct}M_X(at)\]
         
         
-    \item[Summing Independent R.V.s by Multiplying MGFs.] If $X$ and $Y$ are independent, then
+    \item[Summing Independent R.V.s by Multiplying MGFs.] If $X$ and $Y$ are independent, then the sum of two random variables is the product of the MGFs of those two random variables.
     \begin{align*}
         M_{(X+Y)}(t) &= E(e^{t(X + Y)}) = E(e^{tX})E(e^{tY}) = M_X(t) \cdot M_Y(t) \\
         M_{(X+Y)}(t) &= M_X(t) \cdot M_Y(t)
     \end{align*}
-    The MGF of the sum of two random variables is the product of the MGFs of those two random variables.
 \end{description}
 
 \section{Min and Max}
@@ -315,7 +315,6 @@ Hybrid Bayes' Rule is useful for finding posterior distributions of continuous r
 \[f(x|A) = \frac{P(A | X = x)f(x)}{P(A)}\]
 
 \subsection{Marginal Distributions}
-Review: Law of Total Probability Says for an event $A$ and partition $B_1, B_2, ... B_n$: $P(A) = \sum_i P(A\cap B_i)$ \\
 To find the distribution of one (or more) random variables from a joint distribution, sum or integrate over the irrelevant random variables. \\
 
 Getting the Marginal PMF from the Joint PMF
@@ -356,7 +355,7 @@ subsection{Covariance and Correlation (cont'd)}
     \[\cov(X, X) = E(XX) - E(X)E(X) =  \var(X)\]
 \item [Correlation] is a rescaled variant of Covariance that is always between -1 and 1.
     \[\corr(X, Y) = \frac{\cov(X, Y)}{\sqrt{\var(X)\var(Y)}} = \frac{\cov(X, Y)}{\sigma_X\sigma_Y}\]
-\item [Covariance and Indepedence] - If two random variables are independent, then they are uncorrelated. The inverse is not necessarily true, except in the case of Multivariate Normal, where uncorrelated \emph{does} imply independence.
+\item [Covariance and Independence] - If two random variables are independent, then they are uncorrelated. The inverse is not necessarily true, except in the case of Multivariate Normal, where uncorrelated \emph{does} imply independence.
     \[X \independent Y \longrightarrow \cov(X, Y) = 0\]
 
 \item [Covariance and Variance] - Note that
@@ -365,8 +364,7 @@ subsection{Covariance and Correlation (cont'd)}
         \var(X + Y) &= \var(X) + \var(Y) + 2\cov(X, Y) \\
         \var(X_1 + X_2 + \dots + X_n ) &= \sum_{i = 1}^{n}\var(X_i) + 2\sum_{i < j} \cov(X_i, X_j)
     \end{align*}
-    In particular, if X and Y are independent then they have covariance 0 thus
-    \[X \independent Y \Longrightarrow \var(X + Y) = \var(X) + \var(Y)\]
+    
     In particular, If $X_1, X_2, \dots, X_n$ are i.i.d. and all of them have the same covariance relationship, then 
     \[\var(X_1 + X_2 + \dots + X_n ) = n\var(X_1) + 2{n \choose 2}\cov(X_1, X_2)\]
     
@@ -492,7 +490,7 @@ Example: Let $X,Y \sim i.i.d N(0,1)$. Treat $t$ as a constant. Integrate as usua
 \subsection{Law of Total Expectation}
 For any set of events $B_1, B_2, B_3, ... B_n$ that partition the sample space (simplest case being $\{B, B^c\})$: \[E(XI_{B_i}) = \sum_{i=1}^{n}E(X | B_i)P(B_i)\]
 \\end{comment}
-\subsection{Eve's Law | Conditional Variance}
+\section{Eve's Law}
 \begin{description}
     \item[Eve's Law] (aka Law of Total Variance) \quad
     \[\var(Y) = E(\var(Y|X)) + \var(E(Y|X))\]
@@ -565,6 +563,14 @@ $X_1$ is a markov chain if its next state depends only on its current state. For
 
 \end{itemize}
 
+\subsection{Chain Properties}
+ 
+\begin{itemize}
+\item A chain is \textbf{irreducible} if you can get from anywhere to anywhere. An irreducible chain must have all of its states recurrent. 
+\item A chain is \textbf{aperiodic} if it has period 1 and is \textbf{periodic} otherwise. 
+\end{itemize}
+A chain is \textbf{reversible} with respect to $\vec{s}$ if $s_iq_{ij} = s_jq_{ji}$ for all $i, j$.  Vector of probabilities are same running forwards in time or backwards in time. Examples include random walks on undirected networks, or any chain with $q_{ij} = q_{ji}$, where the Markov chain would be stationary with respect to $\vec{s} = (\frac{1}{M}, \frac{1}{M}, \dots, \frac{1}{M})$. \\
+\textbf{Reversibiity Condition Implies Stationary Distribution} 
 
 \subsection{Transition Matrix}
 Element $q_{ij}$ in square transition matrix Q is the probability that the chain goes from state $i$ to state $j$, or more formally:
@@ -575,22 +581,13 @@ To find the probability that the chain goes from state $i$ to state $j$ in $m$ s
 If $X_0$ is distributed according to row-vector PMF $\vec{p}$ (e.g. $p_j = P(X_0 = i_j)$), then the PMF of $X_n$ is $\vec{p}Q^n$.
 
 
-
-\subsection{Chain Properties}
- 
-\begin{itemize}
-\item A chain is \textbf{irreducible} if you can get from anywhere to anywhere. An irreducible chain must have all of its states recurrent. 
-\item A chain is \textbf{aperiodic} if it has period 1 and is \textbf{periodic} otherwise. 
-\end{itemize}
-A chain is \textbf{reversible} with respect to $\vec{s}$ if $s_iq_{ij} = s_jq_{ji}$ for all $i, j$.  Vector of probabilities are same running forwards in time or backwards in time. Examples include random walks on undirected networks, or any chain with $q_{ij} = q_{ji}$, where the Markov chain would be stationary with respect to $\vec{s} = (\frac{1}{M}, \frac{1}{M}, \dots, \frac{1}{M})$. \\
-\textbf{Reversibiity Condition Implies Stationary Distribution} 
 \subsection{Stationary Distribution}
 
 
-Let us say that the vector $\vec{p} = (p_1, p_2, \dots, p_M)$ is a possible and valid PMF of where the Markov Chain is at at a certain time. We will call this vector the stationary distribution, $\vec{s}$, if it satisfies $\vec{s}Q = \vec{s}$. If $X_t$ has the stationary distribution, then all future $X_{t+1}, X_{t + 2}, \dots$ also has the stationary distribution. \\
+Let us say that the vector $\vec{p} = (p_1, p_2, \dots, p_M)$ is a possible and valid PMF of where the Markov Chain is at at a certain time. We will call this vector the stationary distribution, $\vec{s}$, if it satisfies $\vec{s}Q = \vec{s}$. If $X_t$ has the stationary distribution, then all future $X_{t+1}, X_{t + 2}, \dots$ also has the stationary distribution. To solve for the stationary distribution, you can solve for $(Q' - I)(\vec{s})' = 0$. The stationary distribution is uniform if the columns of $Q$ sum to 1.
 \[(s \quad 1-s)\left( \begin{array}{cc}
 p & 1-p \\
-1-q & q \end{array} \right)\] To solve for the stationary distribution, you can solve for $(Q' - I)(\vec{s})' = 0$. The stationary distribution is uniform if the columns of $Q$ sum to 1.
+1-q & q \end{array} \right)\] 
 
 
 \subsection{Random Walk on Undirected Network}
@@ -606,7 +603,7 @@ $X$ is the number of ``failures" that we will achieve before we achieve our firs
 \[1^2=(p+q)^2=p^2+2pq+q^2\]
 \subsubsection{First Success}
 $X$ is the number of ``failures" that we will achieve until our first success, including the success, or number of games needed in order for someone to win the game (including the win). Our successes have probability $p$. If $X \sim \text{Geom}(p)$, then $X+1\sim FS(p)$.
-\subsubsection{Negative hypergeometric} has PMF $\frac{1}{g+1}$ where g is the event you want
+\subsubsection{Negative hypergeometric} PMF is $\frac{1}{g+1}$ where g is the event you want
 \subsection{Poisson Process}
 \begin{description}
 \item[Definition] We have a Poisson Process if we have 
@@ -619,15 +616,6 @@ $X$ is the number of ``failures" that we will achieve until our first success, i
 \[P(T_1 > t) = P(N_t = 0) = e^{-\lambda t} \longrightarrow P(T_1 \leq t) = 1 - e^{-\lambda t}\]
 Thus we have $T_1 \sim \Expo(\lambda)$. And similarly, the interarrival times between arrivals are all $\Expo(\lambda)$, (e.g. $T_i - T_{i-1} \sim \Expo(\lambda)$).
 \end{description}
-
-\subsubsection{Poisson Properties (Chicken and Egg Results)}
-We have $X \sim \Pois(\lambda_1)$ and $Y \sim \Pois(\lambda_2)$ and $X \independent Y$.
-
-\begin{enumerate}
-    \item $X + Y \sim \Pois(\lambda_1 + \lambda_2)$
-    \item $X | (X + Y = k) \sim \Bin\left(k, \frac{\lambda_1}{\lambda_1 + \lambda_2}\right)$
-    \item If we have that $Z \sim \Pois(\lambda)$, and we randomly and independently ``accept" every item in $Z$ with probability $p$, then the number of accepted items $Z_1 \sim \Pois(\lambda p)$, and the number of rejected items $Z_2 \sim \Pois(\lambda q)$, and $Z_1 \independent Z_2$.
-\end{enumerate}
 
 \subsubsection{Normal}
 ALWAYS DRAW A PICTURE! For $X$ is distributed $\N(\mu, \sigma^2)$, we know the following:
@@ -647,21 +635,21 @@ Say this ``Beta is the prior conjugate of the binomial," if using it. If you con
     \end{align*}
 Then after observing the value $X = x$, we get a posterior distribution $p|(X=x) \sim \Beta(a + x, b + n - x)$
 
-\subsection{Notable Uses of the Beta Distribution}
-\begin{description}
-    \item[\dots as the Order Statistics of the Uniform] -  The smallest of three Uniforms is distributed $U_{(1)} \sim \Beta(1, 3)$. The middle of three Uniforms is distributed $U_{(2)} \sim \Beta(2, 2)$, and the largest $U_{(3)} \sim \Beta(3, 1)$. The distribution of the the $j^{th}$ order statistic of $n$ i.i.d Uniforms is:
-    \begin{align*}
-        U_{(j)} &\sim \Beta(j, n - j + 1) \\
-        f_{U_{(j)}}(u) &= \frac{n!}{(j-1)!(n-j)!}t^{j-1}(1-t)^{n-j}
-    \end{align*}
-
-\end{description}
-
 \subsubsection{Gamma}
 \begin{description}
 \item $\Gamma (a+1)=a\Gamma (a)$ for all $a>0$
 \item $\Gamma (n) = (n-1)!$ if $n$ is a positive integer
 \end{description}
+
+\subsubsection{Poisson Properties (Chicken and Egg Results)}
+We have $X \sim \Pois(\lambda_1)$ and $Y \sim \Pois(\lambda_2)$ and $X \independent Y$.
+
+\begin{enumerate}
+    \item $X + Y \sim \Pois(\lambda_1 + \lambda_2)$
+    \item $X | (X + Y = k) \sim \Bin\left(k, \frac{\lambda_1}{\lambda_1 + \lambda_2}\right)$
+    \item If we have that $Z \sim \Pois(\lambda)$, and we randomly and independently ``accept" every item in $Z$ with probability $p$, then the number of accepted items $Z_1 \sim \Pois(\lambda p)$, and the number of rejected items $Z_2 \sim \Pois(\lambda q)$, and $Z_1 \independent Z_2$.
+\end{enumerate}
+
 \subsubsection{Bank and Post Office Result}
 Let us say that we have $X \sim \Gam(a, \lambda)$ and $Y \sim \Gam(b, \lambda)$, and that $X \independent Y$. By Bank-Post Office result, we have that:
 \begin{align*}
@@ -669,6 +657,7 @@ Let us say that we have $X \sim \Gam(a, \lambda)$ and $Y \sim \Gam(b, \lambda)$,
     \frac{X}{X + Y} &\sim \Beta(a, b)\\
     X + Y &\independent \frac{X}{X + Y}
 \end{align*}
+
 \subsubsection{Memoryless Property} Geometric: If you're waiting for the first Heads in a sequence of fair coin tosses, the result of the previous tosses has no impact on the tosses we'll need. Expo: after you've waited $s$ minutes, the probability you'll have to waiter another $t$ minutes is exactly the same as when you'd just started waiting. \[P(X\geq s+1|X \geq s) = P(X\geq t)\]
 \section{How they all relate}
 \begin{enumerate}
