@@ -612,9 +612,6 @@ $X$ is the number of ``failures" that we will achieve until our first success, i
     \item The number of arrivals in a time interval of length $t$ is $\Pois(\lambda t)$
     \item Number of arrivals in disjoint time intervals are independent.
 \end{enumerate}
-\item[Count-Time Duality] - We wish to find the distribution of $T_1$, the first arrival time. We see that the event $T_1 > t$, the event that you have to wait more than $t$ to get the first email, is the same as the event $N_t = 0$, which is the event that the number of emails in the first time interval of length $t$ is 0. We can solve for the distribution of $T_1$.
-\[P(T_1 > t) = P(N_t = 0) = e^{-\lambda t} \longrightarrow P(T_1 \leq t) = 1 - e^{-\lambda t}\]
-Thus we have $T_1 \sim \Expo(\lambda)$. And similarly, the interarrival times between arrivals are all $\Expo(\lambda)$, (e.g. $T_i - T_{i-1} \sim \Expo(\lambda)$).
 \end{description}
 
 \subsubsection{Normal}
@@ -680,6 +677,21 @@ A convolution of $n$ random variables is simply their sum.
     \item All of the above are approximately normal when $\lambda, n, r$ are large by the Central Limit Theorem.
     \item  $Z_1 \sim \N(\mu_1, \sigma_1^2)$, $Z_2 \sim \N(\mu_2, \sigma_2^2)$, $Z_1 \independent Z_2 \longrightarrow  Z_1 + Z_2 \sim \N(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)$
 \end{enumerate}
+
+\section*{CDF/MGFs}
+Another method to find the CDF of a discrete r.v. to realize that $F(X)=1-P(X=0)$
+\begin{center}
+    \begin{tabular}{ccc}
+    \toprule
+    ~ & \textbf{CDF} & \textbf{MGF}  \\
+    \midrule
+        \textbf{Binomial} &  approx w/ normal for large n & $(q + pe^t)^n$ \\
+        \textbf{Geom} & $1-q^{s}$ & $\frac{p}{1-qe^t}, qe^t < 1$ \\
+        \textbf{Unif} & $\frac{x-a}{b-a}$ & $\frac{e^{tb}-e^{ta}}{t(b-a)}$ \\
+        \textbf{Expo} & $1 - e^{-\lambda x}$ & $\frac{\lambda}{\lambda - t}, t < \lambda$ \\
+    \bottomrule
+    \end{tabular}
+\end{center}
 
 \section*{Binomial, Bernoulli, Neg. Binomial, Geometric, Hypergeometric}
 DWR = Draw w/ replacement, DWoR = Draw w/o replacement
